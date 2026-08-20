@@ -1,9 +1,668 @@
-<!doctype html>
-<html>
-  <head>
-    <title>This is the title of the webpage!</title>
-  </head>
-  <body>
-    <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Korfenhoning — Analytics Consultancy</title>
+<meta name="description" content="Korfenhoning is an analytics consultancy that builds data practices the way a hive builds a comb: cell by cell, structured, built to last.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1B14;
+    --honey:#E8A93B;
+    --comb:#B96A24;
+    --wax:#F6EFDD;
+    --slate:#33414A;
+    --paper:#FDFBF6;
+    --line: rgba(27,27,20,0.12);
+    --max: 1120px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1, h2, h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--comb);
+  }
+
+  /* ---------- Header ---------- */
+
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(253,251,246,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:76px;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:19px;
+    text-decoration:none;
+  }
+
+  .brand svg{ width:24px; height:24px; flex-shrink:0; }
+
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:36px;
+  }
+
+  nav ul a{
+    text-decoration:none;
+    font-size:14.5px;
+    font-weight:500;
+    color:var(--slate);
+    transition:color 0.15s ease;
+  }
+
+  nav ul a:hover, nav ul a:focus-visible{ color:var(--comb); }
+
+  .nav-cta{
+    display:inline-flex;
+    align-items:center;
+    padding:10px 20px;
+    background:var(--ink);
+    color:var(--paper) !important;
+    border-radius:3px;
+    font-size:14px;
+    font-weight:500;
+    text-decoration:none;
+    transition:background 0.15s ease;
+  }
+
+  .nav-cta:hover{ background:var(--comb); }
+
+  .nav-toggle{ display:none; }
+
+  /* ---------- Hero ---------- */
+
+  .hero{
+    position:relative;
+    padding:108px 0 96px;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+
+  .hero-comb{
+    position:absolute;
+    top:-40px;
+    right:-120px;
+    width:640px;
+    height:640px;
+    opacity:0.55;
+    pointer-events:none;
+  }
+
+  .hero-inner{
+    position:relative;
+    max-width:660px;
+  }
+
+  .hero .eyebrow{ margin-bottom:22px; display:block; }
+
+  .hero h1{
+    font-size:clamp(40px, 5.6vw, 62px);
+    line-height:1.04;
+    margin-bottom:26px;
+  }
+
+  .hero h1 em{
+    font-style:italic;
+    color:var(--comb);
+  }
+
+  .hero p.lede{
+    font-size:18px;
+    color:var(--slate);
+    max-width:520px;
+    margin-bottom:38px;
+  }
+
+  .hero-actions{
+    display:flex;
+    gap:14px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 26px;
+    background:var(--ink);
+    color:var(--paper);
+    text-decoration:none;
+    border-radius:3px;
+    font-size:15px;
+    font-weight:500;
+    transition:background 0.15s ease, transform 0.15s ease;
+  }
+
+  .btn-primary:hover{ background:var(--comb); transform:translateY(-1px); }
+
+  .btn-secondary{
+    display:inline-flex;
+    align-items:center;
+    padding:14px 6px;
+    color:var(--ink);
+    text-decoration:none;
+    font-size:15px;
+    font-weight:500;
+    border-bottom:1px solid var(--ink);
+  }
+
+  .btn-secondary:hover{ color:var(--comb); border-color:var(--comb); }
+
+  /* ---------- Section shared ---------- */
+
+  section{ padding:88px 0; }
+
+  .section-head{
+    max-width:560px;
+    margin-bottom:56px;
+  }
+
+  .section-head .eyebrow{ margin-bottom:14px; display:block; }
+
+  .section-head h2{
+    font-size:clamp(28px, 3.4vw, 36px);
+    line-height:1.15;
+  }
+
+  .section-head p{
+    margin-top:16px;
+    color:var(--slate);
+    font-size:16.5px;
+  }
+
+  /* ---------- About / philosophy ---------- */
+
+  .about{
+    background:var(--wax);
+    border-bottom:1px solid var(--line);
+  }
+
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:64px;
+    align-items:start;
+  }
+
+  .about-grid .eyebrow{ margin-bottom:14px; display:block; }
+
+  .about-grid h2{
+    font-size:clamp(26px, 3vw, 32px);
+    line-height:1.2;
+  }
+
+  .about-copy p{
+    color:var(--ink);
+    font-size:17px;
+    margin-bottom:18px;
+  }
+
+  .about-copy p:last-child{ margin-bottom:0; }
+
+  .about-copy strong{
+    font-weight:600;
+    color:var(--comb);
+  }
+
+  /* ---------- Services : honeycomb grid ---------- */
+
+  .comb-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:0;
+    margin-top:8px;
+  }
+
+  .cell{
+    position:relative;
+    width:264px;
+    margin:-24px 6px;
+    padding:56px 26px 44px;
+    clip-path:polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    text-align:center;
+    transition:transform 0.2s ease;
+  }
+
+  .cell:nth-child(odd){ margin-top:56px; }
+
+  .cell-inner{ max-width:200px; margin:0 auto; }
+
+  .cell:hover{ transform:translateY(-6px); }
+
+  .cell .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--comb);
+    letter-spacing:0.08em;
+    display:block;
+    margin-bottom:10px;
+  }
+
+  .cell h3{
+    font-size:19px;
+    margin-bottom:10px;
+  }
+
+  .cell p{
+    font-size:14.5px;
+    color:var(--slate);
+    line-height:1.55;
+  }
+
+  .cell.fill-honey{ background:var(--honey); }
+  .cell.fill-honey p{ color:rgba(27,27,20,0.72); }
+  .cell.fill-ink{ background:var(--ink); }
+  .cell.fill-ink h3, .cell.fill-ink .num{ color:var(--wax); }
+  .cell.fill-ink p{ color:rgba(246,239,221,0.72); }
+  .cell.fill-wax{ background:var(--wax); border:1px solid var(--line); }
+  .cell.fill-paper{ background:var(--paper); border:1px solid var(--line); }
+
+  /* ---------- Approach ---------- */
+
+  .approach{
+    background:var(--ink);
+    color:var(--wax);
+  }
+
+  .approach .eyebrow{ color:var(--honey); }
+  .approach .section-head h2{ color:var(--wax); }
+  .approach .section-head p{ color:rgba(246,239,221,0.68); }
+
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:rgba(246,239,221,0.14);
+    border:1px solid rgba(246,239,221,0.14);
+  }
+
+  .step{
+    background:var(--ink);
+    padding:36px 30px;
+  }
+
+  .step .stage{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--honey);
+    display:block;
+    margin-bottom:16px;
+  }
+
+  .step h3{
+    color:var(--wax);
+    font-size:20px;
+    margin-bottom:12px;
+  }
+
+  .step p{
+    color:rgba(246,239,221,0.68);
+    font-size:15px;
+  }
+
+  /* ---------- Contact ---------- */
+
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:center;
+  }
+
+  .contact-info .eyebrow{ margin-bottom:14px; display:block; }
+
+  .contact-info h2{
+    font-size:clamp(28px, 3.4vw, 36px);
+    line-height:1.15;
+    margin-bottom:18px;
+  }
+
+  .contact-info p{
+    color:var(--slate);
+    font-size:16.5px;
+    margin-bottom:24px;
+    max-width:440px;
+  }
+
+  .contact-detail{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    margin-top:28px;
+    font-size:14.5px;
+  }
+
+  .contact-detail span{ color:var(--slate); }
+  .contact-detail strong{ font-weight:600; }
+
+  form{
+    background:var(--wax);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:36px;
+  }
+
+  .field{ margin-bottom:20px; }
+
+  .field label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    margin-bottom:8px;
+  }
+
+  .field input, .field textarea{
+    width:100%;
+    padding:12px 14px;
+    border:1px solid var(--line);
+    border-radius:3px;
+    background:var(--paper);
+    font-family:inherit;
+    font-size:15px;
+    color:var(--ink);
+  }
+
+  .field input:focus, .field textarea:focus{
+    outline:2px solid var(--comb);
+    outline-offset:1px;
+  }
+
+  .field textarea{ resize:vertical; min-height:110px; }
+
+  form .btn-primary{
+    width:100%;
+    justify-content:center;
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:36px 0;
+  }
+
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:13px;
+    color:var(--slate);
+  }
+
+  .footer-row .brand{ font-size:15px; }
+
+  /* ---------- Motion ---------- */
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- Responsive ---------- */
+
+  @media (max-width: 860px){
+    nav ul{ display:none; }
+    .about-grid{ grid-template-columns:1fr; gap:32px; }
+    .steps{ grid-template-columns:1fr; }
+    .contact-grid{ grid-template-columns:1fr; gap:40px; }
+    .hero-comb{ width:420px; height:420px; top:-20px; right:-160px; }
+  }
+
+  @media (max-width: 560px){
+    .wrap{ padding:0 20px; }
+    .hero{ padding:80px 0 64px; }
+    section{ padding:64px 0; }
+    .cell{ width:100%; max-width:280px; margin:-16px 0 !important; }
+    .cell:nth-child(odd){ margin-top:0 !important; }
+    .comb-grid{ flex-direction:column; align-items:center; gap:0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="12,2 20,7 20,17 12,22 4,17 4,7" fill="var(--honey)"/>
+        <polygon points="12,6 16,8.5 16,13.5 12,16 8,13.5 8,8.5" fill="var(--ink)"/>
+      </svg>
+      Korfenhoning
+    </a>
+    <ul>
+      <li><a href="#about">Approach</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Start a conversation</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <svg class="hero-comb" viewBox="0 0 200 200" aria-hidden="true">
+      <g fill="none" stroke="var(--comb)" stroke-width="0.6" opacity="0.5">
+        <polygon points="50,10 85,30 85,70 50,90 15,70 15,30"/>
+        <polygon points="120,10 155,30 155,70 120,90 85,70 85,30"/>
+        <polygon points="85,70 120,90 120,130 85,150 50,130 50,90"/>
+        <polygon points="155,70 190,90 190,130 155,150 120,130 120,90"/>
+        <polygon points="50,130 85,150 85,190 50,210 15,190 15,150"/>
+        <polygon points="120,130 155,150 155,190 120,210 85,190 85,150"/>
+      </g>
+    </svg>
+    <div class="wrap hero-inner">
+      <span class="eyebrow">Korfenhoning — Analytics Consultancy</span>
+      <h1>Data practices built <em>cell by cell</em>, not all at once.</h1>
+      <p class="lede">We help small and mid-sized teams turn scattered numbers into a structure they can actually work from — measured, deliberate, built to hold weight as you grow.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Start a conversation →</a>
+        <a href="#services" class="btn-secondary">See what we do</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow">Our approach</span>
+        <h2>Analytics is a structure you keep adding to — not a project you finish.</h2>
+      </div>
+      <div class="about-copy">
+        <p>Most analytics work fails the same way: a dashboard gets built, nobody trusts the numbers, and it quietly stops getting used. We start smaller than that. One clean cell of the structure at a time — a single reliable metric, a single well-defined process — before the next is added.</p>
+        <p>It's a slower opening move. It's also <strong>why the structure holds</strong> once it's under real weight: reporting cycles, new hires, a board that wants answers on short notice.</p>
+        <p>Korfenhoning works with founders and small teams who want their data practice to be something they trust completely, rather than something that merely looks finished.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Services</span>
+        <h2>Four cells, one structure</h2>
+        <p>Engagements are scoped individually, but most client work draws from these four areas — often starting with just one.</p>
+      </div>
+
+      <div class="comb-grid">
+        <div class="cell fill-honey">
+          <div class="cell-inner">
+            <span class="num">01</span>
+            <h3>Data strategy</h3>
+            <p>Defining what's actually worth measuring before any tool gets touched.</p>
+          </div>
+        </div>
+        <div class="cell fill-ink">
+          <div class="cell-inner">
+            <span class="num">02</span>
+            <h3>Implementation</h3>
+            <p>Setting up tracking, pipelines, and warehousing that hold up under daily use.</p>
+          </div>
+        </div>
+        <div class="cell fill-honey">
+          <div class="cell-inner">
+            <span class="num">03</span>
+            <h3>Dashboards &amp; reporting</h3>
+            <p>Reports built for the people reading them, not for the tool that made them.</p>
+          </div>
+        </div>
+        <div class="cell fill-ink">
+          <div class="cell-inner">
+            <span class="num">04</span>
+            <h3>Ongoing advisory</h3>
+            <p>A standing second opinion as questions and priorities change quarter to quarter.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="approach" id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How we work</span>
+        <h2>Three stages, always in this order</h2>
+        <p>The sequence is the point — each stage is built on the one before it, not run in parallel.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="stage">Survey</span>
+          <h3>Understand the terrain</h3>
+          <p>We map what data already exists, what's trustworthy, and what questions the business actually needs answered.</p>
+        </div>
+        <div class="step">
+          <span class="stage">Structure</span>
+          <h3>Build the comb</h3>
+          <p>We put the smallest reliable version in place first — a metric, a pipeline, a report — and confirm it holds before adding to it.</p>
+        </div>
+        <div class="step">
+          <span class="stage">Sustain</span>
+          <h3>Keep it fed</h3>
+          <p>We hand off documentation and stay close enough to catch drift before it becomes a bigger problem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <span class="eyebrow">Get in touch</span>
+        <h2>Tell us what your data isn't telling you yet.</h2>
+        <p>A short call is usually enough to know whether we're a fit — no deck, no pitch, just a conversation about where things stand.</p>
+        <div class="contact-detail">
+          <span>Email</span>
+          <strong>hello@korfenhoning.nl</strong>
+        </div>
+        <div class="contact-detail">
+          <span>Based in</span>
+          <strong>The Netherlands</strong>
+        </div>
+      </div>
+      <form id="contact-form">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="message">What are you working on?</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Send message</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span class="brand">Korfenhoning</span>
+    <span>© <span id="year"></span> Korfenhoning. Analytics consultancy, Netherlands.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    const original = btn.textContent;
+    btn.textContent = 'Message sent';
+    this.reset();
+    setTimeout(() => { btn.textContent = original; }, 2400);
+  });
+</script>
+
+</body>
 </html>
